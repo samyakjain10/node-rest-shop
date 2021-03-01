@@ -17,6 +17,8 @@ mongoose.connect(
 //Morgan used as a middleware logger
 app.use(morgan('dev'));
 
+app.use('/uploads', express.static('uploads'));
+
 //Body Parser used as a middleware to parse req body
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
