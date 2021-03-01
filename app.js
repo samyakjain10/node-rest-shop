@@ -2,9 +2,17 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+mongoose.connect(
+    "mongodb+srv://root:"+
+     process.env.MONGO_ATLAS_PW +
+    "@node-rest-shop.wwu4m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    { useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false }
+);
 
 //Morgan used as a middleware logger
 app.use(morgan('dev'));
