@@ -6,12 +6,13 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user')
 
 mongoose.connect(
     "mongodb+srv://root:"+
      process.env.MONGO_ATLAS_PW +
     "@node-rest-shop.wwu4m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    { useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false }
+    { useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false,  useCreateIndex: true }
 );
 
 //Morgan used as a middleware logger
@@ -39,6 +40,8 @@ app.use((req, res, next) => {
 
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
+app.use('/user', userRoutes);
+
 
 //If no route found
 app.use((req, res, next) => {
